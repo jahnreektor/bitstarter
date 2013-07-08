@@ -74,12 +74,12 @@ var clone = function(fn) {
 };
 
 var visitURL = function(url) {
-    //console.log("in visit");
+    console.log("in visit");
     var response = rest.get(url).on('complete', function(result) {
 	if (result instanceof Error) {
 	    console.error('Error: ' + result.message);
 	} else {
-	    //console.log("\n\n\n\n\n\nResult: " + result + "\n\n\n\nENDRESULTS");
+	    console.log("\n\n\n\n\n\nResult: " + result + "\n\n\n\nENDRESULTS");
     }});
     return response;
 }
@@ -97,21 +97,18 @@ if(require.main == module) {
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
         .option('-u, --url <url_path>', 'The url')
         .parse(process.argv);
-    //console.log(process.argv);
+    console.log(process.argv);
     if (program.url) {
-	//console.log("YOU ARE IN THE URL IF STATEMENT: " + program.url);
+	console.log("YOU ARE IN THE URL IF STATEMENT: " + program.url);
 	rest.get(program.url).on('complete', function (result) {
-	    if (result instanceof Error) {
-		console.error("Your error message: " + result);}
-	    else {
-		//console.log("\n\n\nThe result:\n\n\n " + result);
-		var checkJson = checkURLHtmlFile(result,program.checks);
-		var outJson = JSON.stringify(checkJson,null,4)
-		console.log(outJson);}
+	    console.log("\n\n\nThe result:\n\n\n " + result);
+	    var checkJson = checkURLHtmlFile(result,program.checks);
+	    var outJson = JSON.stringify(checkJson,null,4)
+	    console.log(outJson);
 	});
     }
     else if (program.file) {
-	//console.log("YOU ARE IN THE FILE IF STATEMENT: " + program.file);
+	console.log("YOU ARE IN THE FILE IF STATEMENT: " + program.file);
 	response = rest.get(program.url).on('complete', function (result) {
 	    var checkJson = checkHtmlFile(program.file, program.checks);
 	    var outJson = JSON.stringify(checkJson, null, 4);

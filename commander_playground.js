@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+var fs = require('fs');
+var program = require('commander');
+var cheerio = require('cheerio');
+
+
+
+
+if (require.main ===module) {
+    console.log(fs);
+    console.log("you ran this shit from command line, didn't you?");
+    program.prompt('name: ', function(name) {
+	console.log('hi %s', name);});
+}
