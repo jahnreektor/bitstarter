@@ -1,0 +1,9 @@
+.heading h1 {
+    display:none;
+}
+
+.logo {
+    background: url('http://econexus.co/study_birdy_logo.svg') no-repeat;
+    height:173px;
+    width:678px;
+}
